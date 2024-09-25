@@ -1,0 +1,56 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/User/login",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7211
+                }
+            ],
+            "UpstreamPathTemplate": "/gateway/User/login",
+            "UpstreamHttpMethod": [ "Post" ]
+            // No AuthenticationOptions here
+        },
+        {
+            "DownstreamPathTemplate": "/api/User/addNewUser",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7211
+                }
+            ],
+            "UpstreamPathTemplate": "/gateway/User/addNewUser",
+            "UpstreamHttpMethod": [ "Post" ]
+            // No AuthenticationOptions here
+        },
+        {
+            "DownstreamPathTemplate": "/api/User/access",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7211
+                }
+            ],
+            "UpstreamPathTemplate": "/gateway/User/access",
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer"
+            }
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "https://localhost:7252",
+        "Logging": {
+            "LogLevel": {
+                "Default": "Information",
+                "Microsoft": "Warning",
+                "Microsoft.Hosting.Lifetime": "Information",
+                "Ocelot": "Debug" // Set Ocelot specific logging level
+            }
+        }
+    }
+}
