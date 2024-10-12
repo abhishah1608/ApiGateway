@@ -8,12 +8,25 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure Kestrel for HTTPS with SSL certificates
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    // Use HTTPS with the certificate and key provided
+    serverOptions.ListenAnyIP(443, listenOptions =>
+    {
+        listenOptions.UseHttps("/app/Certs/mycert.pfx", "Krishna123@."); // Adjust paths as necessary
+    });
+});
+
+
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true).AddEnvironmentVariables();
 
 builder.Services.AddOcelot(builder.Configuration);
 
-string configPath = Directory.GetCurrentDirectory() + "\\" + "Config";
+string configPath = Directory.GetCurrentDirectory() + "//" + "Config";
+
+//string configPath = Directory.GetCurrentDirectory() + "\\" + "Config";
 
 string envfile = builder.Environment.EnvironmentName == "Development" ? "dev" : builder.Environment.EnvironmentName == "Staging" ? "stag" : "prod";
 

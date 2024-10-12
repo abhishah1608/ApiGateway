@@ -5,12 +5,13 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7211
+                    "Host": "172.18.0.4",
+                    "Port": 443
                 }
             ],
             "UpstreamPathTemplate": "/gateway/User/login",
-            "UpstreamHttpMethod": [ "Post" ]
+            "UpstreamHttpMethod": [ "Post" ],
+            "DangerousAcceptAnyServerCertificateValidator": true
             // No AuthenticationOptions here
         },
         {
@@ -18,12 +19,13 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7211
+                    "Host": "172.18.0.4",
+                    "Port": 443
                 }
             ],
             "UpstreamPathTemplate": "/gateway/User/addNewUser",
-            "UpstreamHttpMethod": [ "Post" ]
+            "UpstreamHttpMethod": [ "Post" ],
+            "DangerousAcceptAnyServerCertificateValidator": true
             // No AuthenticationOptions here
         },
         {
@@ -31,19 +33,20 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7211
+                    "Host": "172.18.0.4",
+                    "Port": 443
                 }
             ],
             "UpstreamPathTemplate": "/gateway/User/access",
             "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "DangerousAcceptAnyServerCertificateValidator": true,
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer"
             }
         }
     ],
     "GlobalConfiguration": {
-        "BaseUrl": "https://localhost:7252",
+        "BaseUrl": "https://172.18.0.5:8095",
         "Logging": {
             "LogLevel": {
                 "Default": "Information",
