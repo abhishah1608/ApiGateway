@@ -17,9 +17,8 @@ COPY ["ApiGateway.csproj", "."]
 RUN dotnet restore "./ApiGateway.csproj"
 COPY . .
 
-RUN mkdir -p /app/Config /app/libs  && \
-    cp -R ./libs/*.dll /app/libs/ && \
-    cp -R ./Config/* /app/Config/
+RUN mkdir -p /app/libs  && \
+    cp -R ./libs/*.dll /app/libs/
 
 
 WORKDIR "/src/."
